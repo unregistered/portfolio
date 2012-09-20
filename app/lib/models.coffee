@@ -1,0 +1,1 @@
+# require 'ember-skeleton/models/model'
