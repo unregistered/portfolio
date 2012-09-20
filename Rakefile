@@ -3,9 +3,26 @@ APPNAME = 'ember-skeleton'
 require 'colored'
 require 'rake-pipeline'
 
+desc "Serve files with rack"
+task :server do
+  sh 'bundle exec rackup'
+end
+
 desc "Build #{APPNAME}"
 task :build do
   Rake::Pipeline::Project.new('Assetfile').invoke
+end
+
+desc "Pack app in production mode"
+task :dist do
+  ENV['RAKEP_MODE'] = 'production'
+  Rake::Pipeline::Project.new('Assetfile').invoke
+end
+
+desc "Clean build files"
+task :clean do
+  rm_rf 'tmp'
+  rm_rf 'assets'
 end
 
 desc "Run tests with PhantomJS"
