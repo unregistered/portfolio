@@ -1,5 +1,6 @@
 require "jquery"
 require "handlebars"
+require "bootstrap"
 require "ember"
 require "ember-data"
 require "ember-skeleton/ext"
