@@ -11,12 +11,18 @@ end
 desc "Build #{APPNAME}"
 task :build do
   Rake::Pipeline::Project.new('Assetfile').invoke
+  cp 'index.html', 'assets/index.html'
 end
 
 desc "Pack app in production mode"
 task :dist do
   ENV['RAKEP_MODE'] = 'production'
   Rake::Pipeline::Project.new('Assetfile').invoke
+end
+
+desc "Deploy app to server"
+task :deploy => :dist do
+  sh "scp -r assets/* USER@HOST:~/DIR"
 end
 
 desc "Clean build files"
