@@ -1,10 +1,31 @@
-<nav role="navigation" class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="#">ember-skeleton</a>
+<div id="main" role="main" class="container">
+  <div class="page-header">
+    <h1>Christopher Li</h1>
+  </div>
+
+  <div class="row">
+    <div class="span5 well">
+      <h2>About</h2>
+      <p>I'm an electrical engineering student at USC (2013). I've listed my projects so you can browse below. I'm also learning to juggle.</p>
+      
+      <a class="btn btn-primary" href="/chrisli_resume.pdf"><i class="icon-white icon-download"></i> Download resume (PDF)</a>
+    </div>
+    
+    <div class="span5 well">
+      <h2>Contact Me</h2>
+      <ul>
+        <li><a href="mailto:licy+site@usc.edu">Email</a></li>
+        <li><a href="http://www.linkedin.com/pub/chris-li/13/b02/929">LinkedIn</a></li>
+        <li><a href="http://facebook.com/christopher.y.li">Facebook</a></li>
+        <li><a href="http://github.com/unregistered">Github</a></li>
+      </ul>
+      
     </div>
   </div>
-</nav>
-<div id="main" role="main" class="container">
-  ember-skeleton v{{App.VERSION}}
+  
+  <hr/>
+  
+  {{outlet}}
+  
+  <hr/>
 </div>

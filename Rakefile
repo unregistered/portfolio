@@ -10,19 +10,22 @@ end
 
 desc "Build #{APPNAME}"
 task :build do
+  puts "Building.."
   Rake::Pipeline::Project.new('Assetfile').invoke
   cp 'index.html', 'assets/index.html'
 end
 
 desc "Pack app in production mode"
-task :dist do
+task :dist => :build do
+  puts "Pack for production.."
   ENV['RAKEP_MODE'] = 'production'
   Rake::Pipeline::Project.new('Assetfile').invoke
 end
 
 desc "Deploy app to server"
 task :deploy => :dist do
-  sh "scp -r assets/* USER@HOST:~/DIR"
+  puts "Deploy to server.."
+  sh "rsync -r -a -v -e ssh assets/* chris@pacific.sevenservers.com:~/www/default/public_html"
 end
 
 desc "Clean build files"
