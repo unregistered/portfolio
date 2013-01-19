@@ -57,6 +57,7 @@ App.ProjectsView = Ember.View.extend(
         template: Ember.Handlebars.compile """
         <h1>Projects</h1>
         {{#each project in controller.filteredContent}}
+        <div class="project">
             <h3>
             {{project.name}}
             {{#if project.url}}
@@ -70,30 +71,35 @@ App.ProjectsView = Ember.View.extend(
             
             
             <p>{{{project.desc}}}</p>
-            <p>Tags: 
+            <p> 
             {{#each tag in project.tagsArray}}
-                {{view view.TagView tagBinding="tag"}}
+                {{view view.TagView tagBinding="tag" action="toggleConstraint"}}
             {{/each}}
             </p>
+        </div>
         {{/each}}
         """
         
         TagView: Ember.View.extend(
             tag: null
             tagName: 'span'
-            classNames: ['label']
-            template: Ember.Handlebars.compile "{{tag}}"
+            classNames: ['label', 'tag']
+            template: Ember.Handlebars.compile """
+            <a {{action toggleConstraint tag}}>
+                {{tag}}
+            </a>
+            """
                         
             classNameBindings: ['computedColor']
             computedColor: (->
                 constraints = App.router.get('tagsController.constraints')
-                console.log App.router.get('tagsController')
                 return null unless constraints
                 if constraints.contains @get('tag')
                     return 'label-info'
                 else
                     return ''
             ).property('tag', 'App.router.tagsController.constraints.[]')
+            
         )
     )
 )

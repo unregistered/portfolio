@@ -6,15 +6,19 @@ App.Router = Ember.Router.extend(
         projects: Ember.Route.extend(
             route: "/"
             
+            # Accepts string or App.Tag in the event
             toggleConstraint: (router, event) ->
                 tag = event.context
                 constraints = router.get('tagsController.constraints')
                 
-                if constraints.contains tag.name
-                    constraints.remove tag.name
+                tagName = if (typeof(tag) == "string") then tag else tag.name
+                                
+                if constraints.contains tagName
+                    constraints.remove tagName
+                    _gaq.push(['_trackEvent', 'unconstrain', tagName])
                 else
-                    constraints.add tag.name
-                console.log "Add constraint:", router.get('tagsController.constraints')
+                    constraints.add tagName
+                    _gaq.push(['_trackEvent', 'constrain', tagName])
             
             connectOutlets: (router, context) =>
                 router.get('applicationController').connectOutlet('projects')

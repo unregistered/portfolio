@@ -10,6 +10,13 @@ a {
   color: #fff;
 }
 
-.selectable {
-    cursor: pointer;
+span.tag {
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.project {
+    margin-bottom: 30px;
 }
