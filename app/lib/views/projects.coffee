@@ -55,7 +55,6 @@ App.ProjectsView = Ember.View.extend(
     
     ProjectList: Ember.View.extend(
         template: Ember.Handlebars.compile """
-        <h1>Projects</h1>
         {{#each project in controller.filteredContent}}
         <div class="project">
             <h3>
